@@ -16,16 +16,12 @@ namespace ReturnExceptionalCode {
 
         static void ChooseInput(string input) {
             // if IsNumber
-            try {
-                var number = Int32.Parse(input);
-                throw new NumberBox(123);
-            } catch (FormatException) {}
+            try { throw new NumberBox(Int32.Parse(input)); }
+            catch (FormatException) {}
 
             // else if isList
-            try {
-                var numbers = input.Split(",").Select(n => Int32.Parse(n.Trim())).ToList();
-                throw new ListBox(numbers);
-            } catch (FormatException) {}
+            try { throw new ListBox(input.Split(",").Select(n => Int32.Parse(n.Trim())).ToList()); }
+            catch (FormatException) {}
 
             // else
             throw new StringBox(input);
