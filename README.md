@@ -8,7 +8,7 @@ Not really sum types because we cannot exhaustively match.
 // We want to take a different code path depending on the type of input.
 
 // str is one of ["123", "4, 5, 6", "hello"]
-try { ChooseInput(str); }
+try { Match(str); }
 catch (NumberBox box) { Console.WriteLine($"Got a number: {box.Number}"); }
 catch (ListBox box)   { Console.WriteLine($"Got a list  : [{String.Join(", ", box.Numbers)}]"); }
 catch (StringBox box) { Console.WriteLine($"Got a string: {box.Input}"); }
@@ -30,7 +30,7 @@ Got a string: hello
 
 ```c#
 // We use exceptions to return different types.
-static void ChooseInput(string input) {
+static void Match(string input) {
     // if IsNumber
     try { throw new NumberBox(Int32.Parse(input)); }
     catch (FormatException) {}

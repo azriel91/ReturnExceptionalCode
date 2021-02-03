@@ -7,14 +7,14 @@ namespace ReturnExceptionalCode {
         static void Main(string[] args) {
             var inputs = new List<string> { "123", "4, 5, 6", "hello" };
             inputs.ForEach(str => {
-                try { ChooseInput(str); }
+                try { Match(str); }
                 catch (NumberBox box) { Console.WriteLine($"Got a number: {box.Number}"); }
                 catch (ListBox box)   { Console.WriteLine($"Got a list  : [{String.Join(", ", box.Numbers)}]"); }
                 catch (StringBox box) { Console.WriteLine($"Got a string: {box.Input}"); }
             });
         }
 
-        static void ChooseInput(string input) {
+        static void Match(string input) {
             // if IsNumber
             try { throw new NumberBox(Int32.Parse(input)); }
             catch (FormatException) {}
